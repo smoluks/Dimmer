@@ -1,2 +1,9 @@
 Bluetooth 4.0 dimmer based on CC2541
 Two-wired only
+
+Now it's not a fully work version.
+
+Soft:
+schematics/pcb - Novarm DipTrace 2.4.0.2 Non-profit license
+cc2541 - IAR for 8051 IDE, 8.30.2
+Android - Android Studio 1.1.0
