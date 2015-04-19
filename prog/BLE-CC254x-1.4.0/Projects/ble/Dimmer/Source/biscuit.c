@@ -78,7 +78,7 @@ static uint8 advertData[31] =
 };              
 
 // GAP GATT Attributes
-static uint8 attDeviceName[GAP_DEVICE_NAME_LEN] = "Dimmer01";
+static uint8 attDeviceName[GAP_DEVICE_NAME_LEN] = "Dimmer02";
 /*********************************************************************
  * LOCAL FUNCTIONS
  */
@@ -86,7 +86,6 @@ static void biscuit_ProcessOSALMsg( osal_event_hdr_t *pMsg );
 static void peripheralStateNotificationCB( gaprole_States_t newState );
 static void performPeriodicTask( void );
 static void txrxServiceChangeCB( uint8 paramID );
-static void dataHandler( uint8 port, uint8 events );
 static void addtorx(uint8 buf[], uint8 len);
 /*********************************************************************
  * PROFILE CALLBACKS */
@@ -170,29 +169,8 @@ void Biscuit_Init( uint8 task_id )
   // Initialize GATT attributes
   GGS_AddService( GATT_ALL_SERVICES );            // GAP
   GATTServApp_AddService( GATT_ALL_SERVICES );    // GATT attributes
-  //DevInfo_AddService();                           // Device Information Service
+  DevInfo_AddService();                           // Device Information Service
   TXRX_AddService( GATT_ALL_SERVICES );  // Simple GATT Profile
- //----io---
- P0SEL = 0x7C;
- P1SEL = 0xC0;
- P2SEL = 0;
- P0DIR = 0x7C;
- P1DIR = 0x40; 
- P2DIR = 0x00;
- P0 = 0x40;
- P1 = 0; 
- P2 = 0;
- //
- T1CTL = 0x01;
- T1CCTL0 = 0x24;
- T1CC0H = 0x00;
- T1CC0L = 0x01;
- T1CCTL1 = 0x24;
- T1CC1H = 0x80;
- T1CC1L = 0x00;
- T1CCTL2= 0x24;
- T1CC2H = 0x00;
- T1CC2L = 0x01;
  // Register callback with TXRXService
  VOID TXRX_RegisterAppCBs( &biscuit_TXRXServiceCBs );
  // Enable clock divide on halt
@@ -201,7 +179,7 @@ void Biscuit_Init( uint8 task_id )
  //  HCI_EXT_ClkDivOnHaltCmd( HCI_EXT_ENABLE_CLK_DIVIDE_ON_HALT );
  // Initialize serial interface
  PERCFG |= 1;
- NPI_InitTransport(dataHandler);  
+ //NPI_InitTransport(dataHandler);  
  U0GCR &= 0xE0;      // Default baudrate 57600
  U0GCR |= 0x0A;
  U0BAUD = 216;
@@ -575,7 +553,7 @@ static void txrxServiceChangeCB(uint8 paramID)
  * @param   events - type of data.
  *
  * @return  none
- */
+ 
 static void dataHandler( uint8 port, uint8 events )
 {  
   if((events & HAL_UART_RX_TIMEOUT) == HAL_UART_RX_TIMEOUT)
@@ -589,7 +567,7 @@ static void dataHandler( uint8 port, uint8 events )
   }
   return;
 }
-
+ */
 static void addtorx(uint8 buf[], uint8 len)
 {
   uint8 copy;   
