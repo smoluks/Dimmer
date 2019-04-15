@@ -1,0 +1,12 @@
+;	STMicroelectronics Workspace file
+
+[Version]
+Keyword=ST7Workspace-V0.7
+
+[Project0]
+Filename=dimmerrf.stp
+Dependencies=
+[Options]
+ActiveProject=dimmerrf
+ActiveConfig=Debug
+AddSortedElements=1
