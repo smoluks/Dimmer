@@ -4,7 +4,7 @@
 ![pcb_back.png](/images/pcb_back.png)
 
 Remote controls:
-![pults.png](/images/pults.png
+![pults.png](/images/pults.png)
 
 Schematics:
 ![sch_input.jpg](/images/sch_input.jpg)
