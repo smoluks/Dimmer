@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<PROJECT DESCRIPTION="">
+ <KEYWORDS/>
+ <FILES>
+  <FILE GROUP="Source Files" NAME="1.asm"/>
+  <FILE GROUP="Design Files" NAME="1.dsn"/>
+ </FILES>
+ <CONFIGURATION TARGET="Debug" COMPILER="AVRASM (Proteus)" NAME="Debug">
+  <CONTROLLER FAMILY="AVR" CLOCK="9600000" TYPE="ATtiny13"/>
+  <FILE TOOL="ASM" NAME="Debug/Debug.hex">
+   <FILE NAME="1.asm"/>
+  </FILE>
+  <FILE NAME="1.dsn"/>
+  <OPTION DEFAULT="1" TOOL="ASM" NAME="-i" VALUE="&quot;%COMPILER_DIR_DOS%\appnotes\tn13def.inc&quot;"/>
+  <OPTION DEFAULT="1" TOOL="ASM" NAME="-f" VALUE="I"/>
+ </CONFIGURATION>
+ <CONFIGURATION TARGET="Release" COMPILER="AVRASM (Proteus)" NAME="Release">
+  <CONTROLLER FAMILY="AVR" CLOCK="9600000" TYPE="ATtiny13"/>
+  <FILE TOOL="ASM">
+   <FILE NAME="1.asm"/>
+  </FILE>
+  <FILE NAME="1.dsn"/>
+  <OPTION TOOL="ASM" NAME="-i" VALUE="&quot;%COMPILER_DIR_DOS%\appnotes\tn13def.inc&quot;"/>
+  <OPTION TOOL="ASM" NAME="-f" VALUE="I"/>
+ </CONFIGURATION>
+</PROJECT>
