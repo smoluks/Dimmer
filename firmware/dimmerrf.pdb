@@ -26,7 +26,7 @@ WatchRWOnFlyTab4=0
 FormatLocals=0
 FormatParameters=0
 [DebugState_v1-Debug.AddOn.St7Registers]
-ActiveTab=1
+ActiveTab=2
 [DebugState_v1-Debug.AddOn.St7PeripheralRegister]
 DisplayFormat=1
 ShowPeriphAddress=0
