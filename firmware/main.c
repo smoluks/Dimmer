@@ -19,7 +19,6 @@ int main(void)
 	PD_DDR = 0b00000000;
 	PD_CR1 = 0b00000000;
 	PD_CR2 = 0b00000001;
-
 	//CLK
 	CLK_DIVR = 0b00000100; //sysclk F/16 = 1 MHz
 	//EINT
@@ -39,9 +38,9 @@ int main(void)
 	TIM2_ARRH = 0x03; //1ms max
 	TIM2_ARRL = 0xE8;
 	//Interrupt-only activation level
-	CFG_GCR = 0b00000011;
+	//CFG_GCR = 0b00000011;
 	//
 	__rim();
-	__wfi();
-	__halt();
+	//__wfi();
+	//__halt();
 }

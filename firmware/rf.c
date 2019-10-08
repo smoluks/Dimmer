@@ -94,7 +94,7 @@ void process_command(uint32_t command)
 	if (programming_mode)
 	{
 		save_remote_id(command & 0x00FFFFF0);
-		programming_mode = false;
+		process_endprg();
 	}
 	else if (get_remote_id() == (command & 0x00FFFFF0))
 		process_rf(command & 0x0F);

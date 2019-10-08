@@ -1,11 +1,13 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+void animation_sleep(uint16_t step);
+void animation_prgmode(uint16_t step);
+void animation_prgmodeend(uint16_t step);
+
 bool programming_mode = false;
 bool channel1enable = false;
 bool channel2enable = false;
-bool sleep_enable = false;
-uint16_t sleepcounter = 0;
 
 void process_rf(uint8_t buttonflags)
 {
@@ -35,8 +37,7 @@ void process_rf(uint8_t buttonflags)
 
     if (buttonflags & BUTTON_SLEEP)
     {
-        sleepcounter = 0;
-        sleep_enable = true;
+        set_animation(animation_sleep);
     }
 }
 
@@ -56,14 +57,79 @@ void process_button(void)
 void process_buttonhold(void)
 {
     programming_mode = true;
+    set_animation(animation_prgmode);
 }
 
-void tick(void)
+void process_endprg(void)
 {
-    if (sleep_enable && (++sleepcounter = 6000))
+    programming_mode = false;
+    set_animation(animation_prgmodeend);
+}
+
+bool animation_enable = false;
+uint16_t animation_step = 0;
+void (*animation_func)(uint16_t step);
+
+void set_animation(void (*animation)(uint16_t step))
+{
+    animation_func = animation;
+    animation_step = 0;
+    animation_enable = true;
+}
+
+void animation_tick(void)
+{
+    animation_func(animation_step++);
+}
+
+void animation_sleep(uint16_t step)
+{
+    switch (step)
     {
+    case 0:
         channel1enable = false;
         channel2enable = false;
-        sleep_enable = false;
+        break;
+    case 100:
+        channel1enable = true;
+        channel2enable = false;
+        break;
+    case 6000:
+        channel1enable = false;
+        channel2enable = false;
+        animation_enable = false;
+        break;
+    }
+}
+
+void animation_prgmode(uint16_t step)
+{
+    switch (step)
+    {
+    case 0:
+        channel1enable = false;
+        channel2enable = false;
+        break;
+    case 100:
+        channel1enable = true;
+        channel2enable = true;
+        break;
+    case 200:
+        channel1enable = false;
+        channel2enable = false;
+        animation_enable = false;
+        break;
+    }
+}
+
+void animation_prgmodeend(uint16_t step)
+{
+    switch (step)
+    {
+    case 0:
+        channel1enable = false;
+        channel2enable = false;
+        animation_enable = false;
+        break;
     }
 }

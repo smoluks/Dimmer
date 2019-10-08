@@ -4,8 +4,9 @@
 
 extern bool channel1enable;
 extern bool channel2enable;
+extern bool animation_enable;
 
-uint16_t buttonimpulse_count = 0;
+uint16_t button_impulse_count = 0;
 
 //Crosszero interrupt
 @svlreg @far @interrupt void
@@ -26,9 +27,10 @@ PortD_interrupt(void)
     TIM3_CNTRL = 0;
     TIM3_CR1 = 0b00001001;
 
-    EXTI_SR2 = 0b00000010;
+    if (animation_enable)
+        animation_tick();
 
-    tick();
+    EXTI_SR2 = 0b00000010;
 }
 
 @svlreg @far @interrupt void TIM3_interrupt(void)
