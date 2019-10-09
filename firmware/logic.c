@@ -1,9 +1,11 @@
 #include <stdint.h>
 #include <stdbool.h>
+#include <logic.h>
 
 void animation_sleep(uint16_t step);
 void animation_prgmode(uint16_t step);
 void animation_prgmodeend(uint16_t step);
+void set_animation(void (*animation)(uint16_t step));
 
 bool programming_mode = false;
 bool channel1enable = false;

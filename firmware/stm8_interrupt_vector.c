@@ -2,6 +2,7 @@
  *	Copyright (c) 2007 STMicroelectronics
  */
 #include "rf.h"
+#include "crosszero.h"
 
 typedef void @far (*interrupt_handler_t)(void);
 

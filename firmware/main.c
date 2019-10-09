@@ -1,5 +1,6 @@
 #include <iostm8l.h>
 #include <stdint.h>
+#include <asm.h>
 
 //volatile uint16_t reset_flags;
 

@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include <stdbool.h>
+#include <iostm8l.h>
+#include "asm.h"
 #include "logic.h"
 
 extern bool channel1enable;
@@ -44,19 +46,19 @@ PortD_interrupt(void)
         if (PB_IDR & 0b00000001)
         {
             //button pressed
-            if (buttonimpulse_count == 500)
+            if (button_impulse_count == 500)
                 return;
 
-            buttonimpulse_count++;
-            if (buttonimpulse_count == 10)
+            button_impulse_count++;
+            if (button_impulse_count == 10)
                 process_button();
-            else if (buttonimpulse_count == 500)
+            else if (button_impulse_count == 500)
                 process_buttonhold();
         }
         else
         {
             //button released
-            buttonimpulse_count = 0;
+            button_impulse_count = 0;
         }
     }
 
