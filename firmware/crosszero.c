@@ -15,14 +15,14 @@ uint16_t button_impulse_count = 0;
 PortD_interrupt(void)
 {
     if (channel1enable)
-        PINB2_RESET();
+        CH1_EN();
     else
-        PINB2_SET();
+        CH1_DIS();
 
     if (channel2enable)
-        PINB1_RESET();
+        CH2_EN();
     else
-        PINB1_SET();
+        CH2_DIS();
 
     //TIM3 start
     TIM3_CNTRH = 0;
@@ -31,26 +31,28 @@ PortD_interrupt(void)
 
     if (animation_enable)
         animation_tick();
-
+		
+		IWDG_KR = 0xaa;
+		
     EXTI_SR2 = 0b00000010;
 }
 
 @svlreg @far @interrupt void TIM3_interrupt(void)
 {
-    PINB2_SET();
-    PINB1_SET();
+    CH1_DIS();
+    CH2_DIS();
 
-    if (PD_IDR & 0b00000001)
+    if(!(PD_IDR & 0b00000001))
     {
         //phase+
-        if (PB_IDR & 0b00000001)
+        if (!(PB_IDR & 0b00000001))
         {
-            //button pressed
+            //----button pressed---
+						
             if (button_impulse_count == 500)
                 return;
 
-            button_impulse_count++;
-            if (button_impulse_count == 10)
+            if (++button_impulse_count == 5)
                 process_button();
             else if (button_impulse_count == 500)
                 process_buttonhold();

@@ -45,7 +45,7 @@ struct interrupt_vector const _vectab[] = {
 	{0x82, NonHandledInterrupt}, /* ADC1 */
 	{0x82, TIM2_interrupt}, /* TIM2 */
 	{0x82, NonHandledInterrupt}, /* TIM2 CC */
-	{0x82, NonHandledInterrupt}, /* TIM3 */
+	{0x82, TIM3_interrupt}, /* TIM3 */
 	{0x82, NonHandledInterrupt}, /* TIM3 CC */
 	{0x82, NonHandledInterrupt}, /* RI */
 	{0x82, NonHandledInterrupt}, /* Reserved */

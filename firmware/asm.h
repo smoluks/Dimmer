@@ -2,7 +2,7 @@
 #define __wfi() _asm("WFI\n")
 #define __halt() _asm("HALT\n")
 
-#define PINB1_SET() _asm("bset 0x5005, #1")
-#define PINB1_RESET() _asm("bres 0x5005, #1")
-#define PINB2_SET() _asm("bset 0x5005, #2")
-#define PINB2_RESET() _asm("bres 0x5005, #2")
+#define CH1_EN() _asm("bres 0x500A, #4")
+#define CH1_DIS() _asm("bset 0x500A, #4")
+#define CH2_EN() _asm("bres 0x5005, #6")
+#define CH2_DIS() _asm("bset 0x5005, #6")

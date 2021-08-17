@@ -15,8 +15,6 @@ volatile uint32_t currentdatacount = 0;
 volatile uint32_t data = 0;
 volatile uint8_t count = 0;
 
-extern bool programming_mode;
-
 //RF interrupt
 @svlreg @far @interrupt void Pin7_interrupt(void)
 {
@@ -24,9 +22,9 @@ extern bool programming_mode;
 	{
 		//FALL
 		uint16_t width = (TIM2_CNTRH << 8) + TIM2_CNTRL;
-		if (width > 350 && width < 450)
+		if (width > 350 && width < 600)
 			process_bit(false);
-		else if (width > 1000 && width < 1200)
+		else if (width > 1200 && width < 1500)
 			process_bit(true);
 		else
 		{
@@ -35,7 +33,8 @@ extern bool programming_mode;
 			currentdatacount = 0;
 		}
 	}
-	//TIM2_CR1 = 0b00001000;
+	
+	TIM2_CR1 = 0b00001000;
 
 	TIM2_CNTRH = 0;
 	TIM2_CNTRL = 0;
@@ -85,17 +84,7 @@ void process_data(uint32_t data)
 			return;
 
 		if (currentdatacount++ == PACKET_COUNT_TO_SUCCESS)
-			process_command(data);
+			process_rf(data);
 	}
 }
 
-void process_command(uint32_t command)
-{
-	if (programming_mode)
-	{
-		save_remote_id(command & 0x00FFFFF0);
-		process_endprg();
-	}
-	else if (get_remote_id() == (command & 0x00FFFFF0))
-		process_rf(command & 0x0F);
-}

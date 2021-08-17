@@ -1,2 +1,2 @@
-void save_remote_id(uint32_t new_remote_id);
-uint32_t get_remote_id(void);
+void eeprom_write32(uint16_t address, uint32_t data);
+uint32_t eeprom_read32(uint16_t address);

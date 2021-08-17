@@ -61,7 +61,7 @@ String.100.2=STM8 Cosmic
 String.100.3=ST7 Metrowerks V1.1
 String.100.4=Raisonance
 String.101.0=STM8 Cosmic
-String.102.0=C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8
+String.102.0=
 String.103.0=
 String.104.0=Hstm8
 String.105.0=Lib
@@ -143,7 +143,7 @@ String.100.2=STM8 Cosmic
 String.100.3=ST7 Metrowerks V1.1
 String.100.4=Raisonance
 String.101.0=STM8 Cosmic
-String.102.0=C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8
+String.102.0=
 String.103.0=
 String.104.0=Hstm8
 String.105.0=Lib
@@ -217,7 +217,7 @@ String.6.0=2019,4,15,1,30,15
 [Root.Source Files]
 ElemType=Folder
 PathName=Source Files
-Child=Root.Source Files.main.c
+Child=Root.Source Files.crosszero.c
 Next=Root.Include Files
 Config.0=Root.Source Files.Config.0
 Config.1=Root.Source Files.Config.1
@@ -288,6 +288,21 @@ String.4.0=
 String.5.0=
 String.6.0=2019,4,15,1,30,15
 
+[Root.Source Files.crosszero.c]
+ElemType=File
+PathName=crosszero.c
+Next=Root.Source Files.eeprom.c
+
+[Root.Source Files.eeprom.c]
+ElemType=File
+PathName=eeprom.c
+Next=Root.Source Files.logic.c
+
+[Root.Source Files.logic.c]
+ElemType=File
+PathName=logic.c
+Next=Root.Source Files.main.c
+
 [Root.Source Files.main.c]
 ElemType=File
 PathName=main.c
@@ -305,7 +320,7 @@ PathName=stm8_interrupt_vector.c
 [Root.Include Files]
 ElemType=Folder
 PathName=Include Files
-Child=Root.Include Files.rf.h
+Child=Root.Include Files.asm.h
 Config.0=Root.Include Files.Config.0
 Config.1=Root.Include Files.Config.1
 
@@ -374,6 +389,26 @@ String.3.0=
 String.4.0=
 String.5.0=
 String.6.0=2019,4,15,1,30,15
+
+[Root.Include Files.asm.h]
+ElemType=File
+PathName=asm.h
+Next=Root.Include Files.crosszero.h
+
+[Root.Include Files.crosszero.h]
+ElemType=File
+PathName=crosszero.h
+Next=Root.Include Files.eeprom.h
+
+[Root.Include Files.eeprom.h]
+ElemType=File
+PathName=eeprom.h
+Next=Root.Include Files.logic.h
+
+[Root.Include Files.logic.h]
+ElemType=File
+PathName=logic.h
+Next=Root.Include Files.rf.h
 
 [Root.Include Files.rf.h]
 ElemType=File
